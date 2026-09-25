@@ -10,33 +10,36 @@
     <main class="container">
         <section class="balance-container">
             <section class="total-balance">
-                <p>Total Balance</p>
+                <p class="info-text">Total Balance</p>
                 <p class="balance">Rp.0</p>
             </section>
-            <section class="incoming-balance">
-                <p>Incoming Balance</p>
+            <section class="income-balance">
+                <p class="info-text">Incoming Balance</p>
                 <p class="in-balance">Rp.200.000</p>
             </section>
-            <section class="outgoing-balance">
-                <p>Outgoing Balance</p>
+            <section class="expense-balance">
+                <p class="info-text">Expense Balance</p>
                 <p class="out-balance">Rp.150.000</p>
             </section>
         </section>
         <section class="transactions-container">
-            <nav class="transactions-nav">
-                <select name="transaction-filter" id="transaction-filter">
-                    <option value="All Transaction" selected>All Transaction</option>
-                    <option value="Incoming Transaction">Incoming Transaction</option>
-                    <option value="Outgoing Transaction">Outgoing Transaction</option>
-                </select>
-                <button type="button" class="add-transaction">+</button>
-                <input type="text" placeholder="Search Transaction">
-                <button type="button" class="search">S</button>
-            </nav>
+            <section class="transaction-filter">
+                <button type="button" class="all-transaction active">All</button>
+                <button type="button" class="income">Income</button>
+                <button type="button" class="expense">Expense</button>
+            </section>
             <section class="list-transactions">
-
+                <p>Recent Transaction</p>
+                <section class="transaction">
+                    <p>Makanan</p>
+                    <p>-Rp.200.000</p>
+                </section>
             </section>
         </section>
+        <nav class="transactions-nav">    
+            <button type="button" class="add-transaction">+</button>
+            <button type="button" class="search">S</button>
+        </nav>
         <section class="new-transaction">
             <form action="">
                 <label for="transaction-desc">Description : </label>
@@ -46,17 +49,17 @@
                 <select name="transaction-type" id="transaction-type">
                     <option value="" disabled selected>Transaction Type</option>
                     <option value="Incoming">Incoming</option>
-                    <option value="Outgoing">Outgoing</option>
+                    <option value="expense">expense</option>
                 </select>
-                <select name="incoming-type" id="incoming-type">
+                <select name="income-type" id="income-type">
                     <option value="" disabled selected>Incoming Type</option>
                     <option value="Salary">Salary</option>
                     <option value="Bonus">Bonus</option>
                     <option value="Freelance">Freelance</option>
                     <option value="Other">Other</option>
                 </select>
-                <select name="outgoing-type" id="outgoing-type">
-                    <option value="" disabled selected>Outgoing Type</option>
+                <select name="expense-type" id="expense-type">
+                    <option value="" disabled selected>expense Type</option>
                     <option value="Food">Food</option>
                     <option value="Transportation">Transportation</option>
                     <option value="Shopping">Shopping</option>

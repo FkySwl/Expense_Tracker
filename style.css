@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(215, 215, 215);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.balance-container {
+    background-color: rgb(29, 102, 212);
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: rgb(215, 215, 215);
+    padding: 10px 10px 30px;
+    font-size: 14px;
+}
+
+.balance-container .total-balance {
+    grid-column: 1 / span 2;
+}
+
+.total-balance .balance {
+    font-size: 2.5em;
+}
+
+.in-balance, .out-balance {
+    font-size: 1.5em;
+}
+
+.info-text {
+    color: rgba(215, 215, 215, .7);
+}
+
+.transactions-container {
+    background-color: rgb(200, 200, 200);
+    margin-top: -20px;
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 100vh;
+    height: max-content;
+}
+
+.transaction-filter {
+    overflow: hidden;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.transaction-filter button {
+    padding: 15px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: linear .2s;
+}
+
+.transaction-filter .active {
+    border-bottom: 3px solid rgb(150, 150, 150);
+}
+
+.transaction-filter button:hover {
+    background-color: rgba(150, 150, 150, .5);
+}
+
+.list-transactions {
+    padding: 10px;
+}
+
+.transactions-nav {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+    background-color: blue;
+    padding: 20px;
+}
+
+.new-transaction {
+    display: none;
+}
+
