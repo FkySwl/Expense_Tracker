@@ -15,7 +15,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     color: rgb(215, 215, 215);
-    padding: 10px 10px 30px;
+    padding: 10px 10px 35px;
     font-size: 14px;
 }
 
@@ -42,6 +42,7 @@ body {
     border-radius: 20px;
     min-height: 100vh;
     height: max-content;
+    box-shadow: 0 -5px 10px rgba(0,0,0,.2);
 }
 
 .transaction-filter {
@@ -52,6 +53,9 @@ body {
 }
 
 .transaction-filter button {
+    font-size: 1em;
+    font-weight: bold;
+    color: rgb(45,45,45);
     padding: 15px 10px;
     background-color: transparent;
     border: none;
@@ -69,18 +73,73 @@ body {
 
 .list-transactions {
     padding: 10px;
+    display: grid;
+    gap: 15px;
+}
+
+.transaction {
+    background-color: rgb(29, 102, 212);
+    color: rgb(215, 215, 215);
+    display: grid;
+    grid-template-columns: 1fr 1fr 40px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 8px rgba(0,0,0,.5);
+}
+
+.transaction .date {
+    order: 999;
+    font-size: .8em;
+}
+
+.transaction section {
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction section button {
+    height: 32px;
+    width: 32px;
+    background-color: rgb(200, 200, 200);
+    border: none;
+    border-radius: 10px;
 }
 
 .transactions-nav {
     width: 100%;
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
     justify-content: center;
-    background-color: blue;
-    padding: 20px;
+    
 }
+
+.transactions-nav button {
+    position: absolute;
+    color: rgb(200, 200, 200);
+    top: -70px;
+    border: none;
+    background-color: rgb(29, 102, 212);
+    border-radius: 10px;
+    height: 60px;
+    width: 60px;
+    font-weight: bold;
+    font-size: 40px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.5);
+    transition: linear .2s;
+}
+
+.transactions-nav button:hover {
+    background-color: rgb(1, 65, 160);
+    color: rgb(150, 150, 150);
+}
+
 
 .new-transaction {
     display: none;
