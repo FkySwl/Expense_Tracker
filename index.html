@@ -11,15 +11,15 @@
         <section class="balance-container">
             <section class="total-balance">
                 <p class="info-text">Total Balance</p>
-                <p class="balance">Rp.0</p>
+                <p class="balance">Rp0</p>
             </section>
             <section class="income-balance">
                 <p class="info-text">Incoming Balance</p>
-                <p class="in-balance">Rp.200.000</p>
+                <p class="in-balance">Rp0</p>
             </section>
             <section class="expense-balance">
                 <p class="info-text">Expense Balance</p>
-                <p class="out-balance">Rp.150.000</p>
+                <p class="out-balance">Rp0</p>
             </section>
         </section>
         <section class="transactions-container">
@@ -29,9 +29,9 @@
                 <button type="button" class="expense">Expense</button>
             </section>
             <section class="list-transactions">
-                <section class="transaction">
+                <!-- <section class="transaction">
                     <p>Makanan</p>
-                    <p>-Rp.200.000</p>
+                    <p>-Rp200.000</p>
                     <p class="date">20 agustus 2025</p>
                     <section>
                         <button>D</button>
@@ -39,7 +39,7 @@
                 </section>
                 <section class="transaction">
                     <p>Makanan</p>
-                    <p>-Rp.200.000</p>
+                    <p>-Rp200.000</p>
                     <p class="date">20 agustus 2025</p>
                     <section>
                         <button>D</button>
@@ -47,7 +47,7 @@
                 </section>
                 <section class="transaction">
                     <p>Makanan</p>
-                    <p>-Rp.200.000</p>
+                    <p>-Rp200.000</p>
                     <p class="date">20 agustus 2025</p>
                     <section>
                         <button>D</button>
@@ -55,49 +55,49 @@
                 </section>
                 <section class="transaction">
                     <p>Makanan</p>
-                    <p>-Rp.200.000</p>
+                    <p>-Rp200.000</p>
                     <p class="date">20 agustus 2025</p>
                     <section>
                         <button>D</button>
                     </section>
-                </section>
+                </section> -->
             </section>
         </section>
         <nav class="transactions-nav">    
             <button type="button" class="add-transaction">+</button>
         </nav>
-        <section class="new-transaction">
-            <form action="">
-                <label for="transaction-desc">Description : </label>
-                <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Description" required>
-                <label for="total-money">Total Money : </label>
-                <input type="number" name="total-money" id="total-money" placeholder="Total Money" required>
-                <select name="transaction-type" id="transaction-type">
-                    <option value="" disabled selected>Transaction Type</option>
-                    <option value="Incoming">Incoming</option>
-                    <option value="expense">expense</option>
-                </select>
-                <select name="income-type" id="income-type">
-                    <option value="" disabled selected>Incoming Type</option>
-                    <option value="Salary">Salary</option>
-                    <option value="Bonus">Bonus</option>
-                    <option value="Freelance">Freelance</option>
-                    <option value="Other">Other</option>
-                </select>
-                <select name="expense-type" id="expense-type">
-                    <option value="" disabled selected>expense Type</option>
-                    <option value="Food">Food</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Bill">Bill</option>
-                    <option value="Entertaiment">Entertaiment</option>
-                    <option value="Healthy">Healthy</option>
-                    <option value="Other">Other</option>
-                </select>
-                <button type="button" class="add-new-transaction">Add Transaction</button>
-            </form>
-        </section>
     </main>
+    <section class="new-transaction">
+        <form action="">
+            <label for="transaction-desc">Description : </label>
+            <input type="text" name="transaction-desc" id="transaction-desc" placeholder="Description" required>
+            <label for="total-money">Total Money : </label>
+            <input type="number" name="total-money" id="total-money" placeholder="Total Money" required>
+            <select name="transaction-type" id="transaction-type">
+                <option value="" disabled selected>Transaction Type</option>
+                <option value="Incoming">Incoming</option>
+                <option value="expense">expense</option>
+            </select>
+            <select name="income-type" id="income-type">
+                <option value="" disabled selected>Incoming Type</option>
+                <option value="Salary">Salary</option>
+                <option value="Bonus">Bonus</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Other">Other</option>
+            </select>
+            <select name="expense-type" id="expense-type">
+                <option value="" disabled selected>expense Type</option>
+                <option value="Food">Food</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bill">Bill</option>
+                <option value="Entertaiment">Entertaiment</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="button" class="add-new-transaction">Add Transaction</button>
+        </form>
+    </section>
 
     <script src="script.js"></script>
 </body>
