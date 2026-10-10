@@ -3,7 +3,7 @@ const totalBalance = document.querySelector('.total-balance .balance');
 const incomingBalance = document.querySelector('.income-balance .in-balance');
 const expenseBalance = document.querySelector('.expense-balance .out-balance');
 const addTransaction = document.querySelector('.add-transaction');
-const newTransactionForm = document.querySelector('.new-transaction')
+const newTransactionForm = document.querySelector('.new-transaction');
 
 const rupiah = "Rp"
 
@@ -21,6 +21,18 @@ addTransaction.addEventListener('click', function() {
     backTrigger.addEventListener('click', function() {
         newTransactionForm.classList.remove('active');
     });
+    const transactionType = document.getElementById('transaction-type');
+    transactionType.addEventListener('change', function() {
+        const incomeType = document.getElementById('income-type');
+        const expenseType = document.getElementById('expense-type');
+        if (transactionType.value == 'Income') {
+            incomeType.classList.add('active');
+            expenseType.classList.remove('active');
+        } else if (transactionType.value == 'Expense') {
+            expenseType.classList.add('active');
+            incomeType.classList.remove('active');
+        }
+    })
 });
 
 
