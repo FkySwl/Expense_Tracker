@@ -136,6 +136,7 @@ body {
     font-size: 40px;
     box-shadow: 5px 5px 10px rgba(0,0,0,.5);
     transition: linear .2s;
+    cursor: pointer;
 }
 
 .transactions-nav button:hover {
@@ -206,6 +207,7 @@ body {
     align-self: center;
     transition: linear .2s;
     box-shadow: 5px 5px 12px rgba(0,0,0,.5);
+    cursor: pointer;
 }
 
 .new-transaction button:hover {

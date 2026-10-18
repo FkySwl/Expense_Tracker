@@ -5,7 +5,7 @@ const expenseBalance = document.querySelector('.expense-balance .out-balance');
 const addTransaction = document.querySelector('.add-transaction');
 const newTransactionForm = document.querySelector('.new-transaction');
 
-const rupiah = "Rp"
+const transactions = JSON.parse(localStorage.getItem('transactions')) ?? [];
 
 transactionFilter.forEach(button => {
     button.addEventListener('click', function() {
@@ -21,10 +21,11 @@ addTransaction.addEventListener('click', function() {
     backTrigger.addEventListener('click', function() {
         newTransactionForm.classList.remove('active');
     });
+
     const transactionType = document.getElementById('transaction-type');
+    const incomeType = document.getElementById('income-type');
+    const expenseType = document.getElementById('expense-type');
     transactionType.addEventListener('change', function() {
-        const incomeType = document.getElementById('income-type');
-        const expenseType = document.getElementById('expense-type');
         if (transactionType.value == 'Income') {
             incomeType.classList.add('active');
             expenseType.classList.remove('active');
@@ -32,7 +33,27 @@ addTransaction.addEventListener('click', function() {
             expenseType.classList.add('active');
             incomeType.classList.remove('active');
         }
-    })
+    });
+
+    const addNewTransaction = document.querySelector('.add-new-transaction');
+    addNewTransaction.addEventListener('click', function() {
+        const description = document.getElementById('transaction-desc');
+        const totalMoney = document.getElementById('total-money');
+        
+        const newTransaction = {
+            description : description.value,
+            money : totalMoney.value,
+            transactionType : transactionType.value,
+            type : transactionType.value == "Income" ? incomeType.value : expenseType.value,   
+        } 
+
+        transactions.push(newTransaction);
+        localStorage.setItem(
+            'transactions',
+            JSON.stringify(transactions)
+        );
+
+    });
 });
 
 
