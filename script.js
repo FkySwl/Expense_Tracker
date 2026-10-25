@@ -3,19 +3,19 @@ const totalBalance = document.querySelector('.total-balance .balance');
 const incomingBalance = document.querySelector('.income-balance .in-balance');
 const expenseBalance = document.querySelector('.expense-balance .out-balance');
 const addTransaction = document.querySelector('.add-transaction');
-const newTransactionForm = document.querySelector('.new-transaction');
 
 const transactions = JSON.parse(localStorage.getItem('transactions')) ?? [];
 
 transactionFilter.forEach(button => {
     button.addEventListener('click', function() {
         // menjadikan elemen untuk filter jadi interactive 
-        transactionFilter.forEach(button => button.classList.remove('active'))
+        transactionFilter.forEach(button => button.classList.remove('active'));
         this.classList.add('active');
     });
 });
 
 addTransaction.addEventListener('click', function() {
+    const newTransactionForm = document.querySelector('.new-transaction');
     newTransactionForm.classList.add('active');
     const backTrigger = document.querySelector('.back-trigger');
     backTrigger.addEventListener('click', function() {
@@ -39,19 +39,25 @@ addTransaction.addEventListener('click', function() {
     addNewTransaction.addEventListener('click', function() {
         const description = document.getElementById('transaction-desc');
         const totalMoney = document.getElementById('total-money');
-        
-        const newTransaction = {
-            description : description.value,
-            money : totalMoney.value,
-            transactionType : transactionType.value,
-            type : transactionType.value == "Income" ? incomeType.value : expenseType.value,   
-        } 
+        if (description.value.length > 0 && totalMoney.value.length > 0 && transactionType.value != "Transaction Type" && (incomeType.value != "Income Type" || expenseType.value != "Expense Type")) {
+            const newTransaction = {
+                description : description.value,
+                money : totalMoney.value,
+                transactionType : transactionType.value,
+                type : transactionType.value == "Income" ? incomeType.value : expenseType.value,   
+            } 
+    
+            transactions.push(newTransaction);
+            localStorage.setItem(
+                'transactions',
+                JSON.stringify(transactions)
+            );
 
-        transactions.push(newTransaction);
-        localStorage.setItem(
-            'transactions',
-            JSON.stringify(transactions)
-        );
+            description.value = '', totalMoney.value = '', transactionType.value = "Transaction Type", incomeType.value = "Income Type", expenseType.value = "Expense Type";
+            newTransactionForm.classList.remove('active');
+        } else {
+            // alert("Harap Masukkan Informasi Yang Lengkap");
+        }
 
     });
 });
