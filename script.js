@@ -7,6 +7,7 @@ const addTransaction = document.querySelector('.add-transaction');
 const transactions = JSON.parse(localStorage.getItem('transactions')) ?? [];
 
 renderBalance(transactions);
+renderTransactions(transactions);
 
 transactionFilter.forEach(button => {
     button.addEventListener('click', function() {
@@ -41,10 +42,12 @@ addTransaction.addEventListener('click', function() {
     addNewTransaction.addEventListener('click', function() {
         const description = document.getElementById('transaction-desc');
         const totalMoney = document.getElementById('total-money');
-        if (description.value.length > 0 && totalMoney.value.length > 0 && transactionType.value != "Transaction Type" && (incomeType.value != "Income Type" || expenseType.value != "Expense Type")) {
+        const dateInput = document.getElementById('date');
+        if (description.value.length > 0 && totalMoney.value.length > 0 && transactionType.value != "Transaction Type" && dateInput.value.length > 0 && (incomeType.value != "Income Type" || expenseType.value != "Expense Type")) {
             const newTransaction = {
                 description : description.value,
                 money : Number(totalMoney.value),
+                date : date.value.replaceAll('-', ' '),
                 transactionType : transactionType.value,
                 type : transactionType.value == "Income" ? incomeType.value : expenseType.value,   
             } 
@@ -55,9 +58,11 @@ addTransaction.addEventListener('click', function() {
                 JSON.stringify(transactions)
             );
 
-            description.value = '', totalMoney.value = '', transactionType.value = "Transaction Type", incomeType.value = "Income Type", expenseType.value = "Expense Type";
+            description.value = '', totalMoney.value = '', dateInput.value = '', transactionType.value = "Transaction Type", incomeType.value = "Income Type", expenseType.value = "Expense Type";
             newTransactionForm.classList.remove('active');
             renderBalance(transactions);
+            renderTransactions(transactions);
+
         } else {
             alert("Harap Masukkan Informasi Yang Lengkap");
         }
@@ -67,14 +72,8 @@ addTransaction.addEventListener('click', function() {
 
 function renderBalance(elements) {
     let balance = 0;
-    let inBalance = 0;
-    // const inBalance = filter(elements, "Income").length > 1 ? filter(elements, "Income").reduce((total, income) => total.money + income.money) : filter(elements, "Income")[0].money;
-    // inBalance = inBalance.length > 1 ? inBalance.reduce((total, income) => total.money + income.money) : inBalance[0].money;
-    
+    let inBalance = 0;  
     let outBalance = 0;
-    // let outBalance = elements.filter(transaction => transaction.transactionType == "Expense");
-    // // outBalance = outBalance.length > 1 ? outBalance.reduce((total, outgoing) => total.money + outgoing.money) : outBalance[0].money;
-
     
     elements.forEach(item => {
         if (item.transactionType == "Income") {
@@ -83,12 +82,11 @@ function renderBalance(elements) {
         } else if (item.transactionType == "Expense" && balance > 0) {
             balance -= item.money;
             outBalance += item.money;
-            
         }
     });
     
-    console.log(inBalance)
-    console.log(outBalance)
+    // console.log(inBalance);
+    // console.log(outBalance);
 
     totalBalance.textContent = `Rp${balance.toLocaleString('id-ID')}`;
     incomingBalance.textContent = `+Rp${inBalance.toLocaleString('id-ID')}`;
@@ -100,8 +98,37 @@ function renderBalance(elements) {
     // Intl.NumberFormat(angka yang mau diformat) lebih lengkapnya silahkan searching 
 }
 
-// function filter(items, type) {
-//     return items.filter(transaction => transaction.transactionType == type)
-// }
-
+function renderTransactions(items) {
+    const transactionLists = document.querySelector('.list-transactions');
+    transactionLists.innerHTML = '';
+    
+    items?.forEach(item => {
+        const newTransactionList = document.createElement('section');
+        newTransactionList.classList.add('transaction');
+    
+        const newDesc = document.createElement('p');
+        newDesc.classList.add('text');
+        newDesc.textContent = item.description;
+    
+        const newBalance = document.createElement('p');
+        newBalance.classList.add('balance');
+        newBalance.textContent = item.transactionType == "Income" ? `+Rp${item.money.toLocaleString('id-ID')}` : `-Rp${item.money.toLocaleString('id-ID')}`;
+    
+        const newDate = document.createElement('p');
+        newDate.classList.add('date');
+        newDate.textContent = item.date;
+    
+        const newDelButton = document.createElement('button');
+        newDelButton.setAttribute('type', 'button');
+        newDelButton.textContent = 'D';
+        
+        newTransactionList.appendChild(newDesc);
+        newTransactionList.appendChild(newBalance);
+        newTransactionList.appendChild(newDate);
+        newTransactionList.appendChild(newDelButton);
+        
+        transactionLists.appendChild(newTransactionList);
+    });
+    
+}
 
