@@ -14,6 +14,15 @@ transactionFilter.forEach(button => {
         // menjadikan elemen untuk filter jadi interactive 
         transactionFilter.forEach(button => button.classList.remove('active'));
         this.classList.add('active');
+        if (this.classList.contains('active') && this.textContent == "Income") {
+            const incomeTransactions = transactions.filter(item => item.transactionType == 'Income');
+            renderTransactions(incomeTransactions);
+        } else if (this.classList.contains('active') && this.textContent == "Expense") {
+            const expenseTransactions = transactions.filter(item => item.transactionType == 'Expense');
+            renderTransactions(expenseTransactions);
+        } else {
+            renderTransactions(transactions);
+        }
     });
 });
 
