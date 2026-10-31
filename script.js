@@ -55,7 +55,7 @@ addTransaction.addEventListener('click', function() {
         if (description.value.length > 0 && totalMoney.value.length > 0 && transactionType.value != "Transaction Type" && dateInput.value.length > 0 && (incomeType.value != "Income Type" || expenseType.value != "Expense Type")) {
             const newTransaction = {
                 description : description.value,
-                money : Number(totalMoney.value),
+                amount : Number(totalMoney.value),
                 date : date.value.replaceAll('-', ' '),
                 transactionType : transactionType.value,
                 type : transactionType.value == "Income" ? incomeType.value : expenseType.value,   
@@ -86,11 +86,11 @@ function renderBalance(elements) {
     
     elements.forEach(item => {
         if (item.transactionType == "Income") {
-            balance += item.money;
-            inBalance += item.money;
+            balance += item.amount;
+            inBalance += item.amount;
         } else if (item.transactionType == "Expense" && balance > 0) {
-            balance -= item.money;
-            outBalance += item.money;
+            balance -= item.amount;
+            outBalance += item.amount;
         }
     });
     
@@ -111,7 +111,7 @@ function renderTransactions(items) {
     const transactionLists = document.querySelector('.list-transactions');
     transactionLists.innerHTML = '';
     
-    items?.forEach(item => {
+    items?.forEach((item, index)=> {
         const newTransactionList = document.createElement('section');
         newTransactionList.classList.add('transaction');
     
@@ -121,7 +121,7 @@ function renderTransactions(items) {
     
         const newBalance = document.createElement('p');
         newBalance.classList.add('balance');
-        newBalance.textContent = item.transactionType == "Income" ? `+Rp${item.money.toLocaleString('id-ID')}` : `-Rp${item.money.toLocaleString('id-ID')}`;
+        newBalance.textContent = item.transactionType == "Income" ? `+Rp${item.amount.toLocaleString('id-ID')}` : `-Rp${item.amount.toLocaleString('id-ID')}`;
     
         const newDate = document.createElement('p');
         newDate.classList.add('date');
@@ -130,6 +130,15 @@ function renderTransactions(items) {
         const newDelButton = document.createElement('button');
         newDelButton.setAttribute('type', 'button');
         newDelButton.textContent = 'D';
+        newDelButton.addEventListener('click', function() {
+            items.splice(index, 1);
+            localStorage.setItem(
+                'transactions',
+                JSON.stringify(items)
+            );
+            newTransactionList.remove();
+            renderBalance(items)
+        });
         
         newTransactionList.appendChild(newDesc);
         newTransactionList.appendChild(newBalance);
