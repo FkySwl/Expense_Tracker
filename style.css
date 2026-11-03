@@ -92,20 +92,17 @@ body {
     box-shadow: 5px 5px 8px rgba(0,0,0,.5);
 }
 
+.transaction p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
 .transaction .date {
     order: 999;
     font-size: .8em;
 }
 
-.transaction section {
-    grid-row: 1 / span 2;
-    grid-column: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.transaction section button {
+.transaction button {
     height: 32px;
     width: 32px;
     background-color: rgb(220, 220, 220);
@@ -163,7 +160,7 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(200, 200, 200,.5);
+    background-color: rgba(200, 200, 200,.9);
     z-index: -999;
 }
 
@@ -224,4 +221,10 @@ body {
     display: block;
 }
 
+@media (min-width: 620px) {
+    .list-transactions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    }
+}
 
