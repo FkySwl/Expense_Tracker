@@ -114,6 +114,7 @@ body {
     width: 100%;
     display: flex;
     position: fixed;
+    gap: 20px;
     bottom: 0;
     left: 0;
     justify-content: center;
@@ -121,7 +122,7 @@ body {
 }
 
 .transactions-nav button {
-    position: absolute;
+    position: relative;
     color: rgb(220, 220, 220);
     top: -70px;
     border: none;
@@ -139,6 +140,10 @@ body {
 .transactions-nav button:hover {
     background-color: rgb(1, 65, 160);
     color: rgb(150, 150, 150);
+}
+
+.transactions-nav button.del-all-transactions {
+    font-size: 20px;
 }
 
 .new-transaction {

@@ -11,6 +11,7 @@ const addNewTransaction = document.querySelector('.add-new-transaction');
 const transactionType = document.getElementById('transaction-type');
 const incomeType = document.getElementById('income-type');
 const expenseType = document.getElementById('expense-type');
+const delAllButton = document.querySelector('.del-all-transactions');
 
 // transaction-list place
 const transactions = JSON.parse(localStorage.getItem('transactions')) ?? [];
@@ -93,6 +94,14 @@ addNewTransaction.addEventListener('click', function() {
     }
 
 });
+
+// give event to delete all transactions
+delAllButton.addEventListener('click', function(){
+    localStorage.clear();
+    transactions.splice(0, transactions.length);
+    renderBalance(transactions);
+    renderTransactions(transactions);
+})
 
 // render balance function
 function renderBalance(elements) {
